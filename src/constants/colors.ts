@@ -10,6 +10,7 @@ export const colors = {
     error: '#F75555',
     facebook: '#58A5C8',
     whatsapp: '#5AC858',
+    disabled: '#DFDFDF',
   },
   bg: {
     primary: '#FFFFFF',
@@ -20,5 +21,7 @@ export const colors = {
     secondary: '#6C7780',
     tertiary: '#8D4AF4',
     error: '#F75555',
+    disabled: '#DFDFDF',
+    white: '#FFFFFF',
   },
 };

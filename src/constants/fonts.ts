@@ -5,9 +5,9 @@ export const fonts = {
 };
 
 export const fontSizes = {
-  body: 12,
-  title: 22,
-  hint: 15,
+  body: 16,
+  title: 32,
+  hint: 12,
   h1: 24,
   h2: 16,
 };

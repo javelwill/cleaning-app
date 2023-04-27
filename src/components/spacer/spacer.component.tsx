@@ -1,11 +1,20 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
-const Spacer = () => {
+type SpacerProps = {
+  size: number;
+  horizontal?: boolean;
+};
+
+const Spacer = ({size, horizontal}: SpacerProps) => {
+  const defaultValue = 'auto';
   return (
-    <View>
-      <Text>Spacer</Text>
-    </View>
+    <View
+      style={{
+        width: horizontal ? size : defaultValue,
+        height: !horizontal ? size : defaultValue,
+      }}
+    />
   );
 };
 
