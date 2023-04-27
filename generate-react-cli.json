@@ -13,6 +13,16 @@
       "customTemplates": {
         "component": "templates/TemplateName.component.tsx"
       }
+    },
+    "screen": {
+      "path": "src/screens",
+      "withStyle": false,
+      "withTest": false,
+      "withStory": false,
+      "withLazy": false,
+      "customTemplates": {
+        "component": "templates/TemplateName.screen.tsx"
+      }
     }
   }
 }
