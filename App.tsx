@@ -1,14 +1,14 @@
-import {StatusBar} from 'expo-status-bar';
-import {StyleSheet, Text, View} from 'react-native';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {
-  useFonts,
   Roboto_400Regular,
   Roboto_500Medium,
   Roboto_700Bold,
+  useFonts,
 } from '@expo-google-fonts/roboto';
+import {NavigationContainer} from '@react-navigation/native';
 import * as SplashScreen from 'expo-splash-screen';
 import {useCallback} from 'react';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import AuthStackNavigator from './src/navigation/auth/auth.navigator';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -31,19 +31,9 @@ export default function App() {
 
   return (
     <SafeAreaProvider onLayout={onLayoutRootView}>
-      <View style={styles.container}>
-        <Text>Open up App.tsx to start working on your app!</Text>
-        <StatusBar style="auto" />
-      </View>
+      <NavigationContainer>
+        <AuthStackNavigator />
+      </NavigationContainer>
     </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
