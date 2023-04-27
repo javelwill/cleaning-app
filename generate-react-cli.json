@@ -23,6 +23,18 @@
       "customTemplates": {
         "component": "templates/TemplateName.screen.tsx"
       }
+    },
+    "navigator": {
+      "path": "src/navigation",
+      "withStyle": false,
+      "withTest": false,
+      "withStory": false,
+      "withLazy": false,
+      "withType": true,
+      "customTemplates": {
+        "component": "templates/TemplateName.navigator.tsx",
+        "type": "templates/TemplateName.types.ts"
+      }
     }
   }
 }
