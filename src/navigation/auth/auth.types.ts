@@ -3,7 +3,7 @@ import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 export type AuthStackNavigatorParamList = {
   SignIn: undefined;
   ForgetPassword: undefined;
-  VerificationCode: undefined;
+  VerificationCode: {email: string};
   ResetPassword: undefined;
   SignUp: undefined;
   UserDetails: undefined;

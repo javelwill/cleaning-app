@@ -10,6 +10,7 @@ type ButtonProps = {
   color: string;
   icon?: React.ReactNode | null;
   onPress: () => void;
+  disabled?: boolean;
 };
 
 const Button = ({
@@ -19,9 +20,10 @@ const Button = ({
   color,
   icon = null,
   onPress,
+  disabled = false,
 }: ButtonProps) => {
   return (
-    <Pressable onPress={() => onPress()}>
+    <Pressable onPress={() => onPress()} disabled={disabled}>
       <View style={[styles.btn, {borderColor, backgroundColor}]}>
         {icon}
         <Text style={[styles.txt, {color}]}>{title}</Text>
