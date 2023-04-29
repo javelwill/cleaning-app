@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import {
   Roboto_400Regular,
   Roboto_500Medium,
@@ -11,6 +12,9 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import AuthStackNavigator from './src/navigation/auth/auth.navigator';
 import {colors} from './src/constants/colors';
 import {Provider as PaperProvider} from 'react-native-paper';
+import MainStackNavigator from './src/navigation/main/main.navigator';
+import AuthProvider from './src/contexts/auth.context';
+import Navigation from './src/navigation';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -42,9 +46,9 @@ export default function App() {
   return (
     <SafeAreaProvider onLayout={onLayoutRootView}>
       <PaperProvider>
-        <NavigationContainer theme={theme}>
-          <AuthStackNavigator />
-        </NavigationContainer>
+        <AuthProvider>
+          <Navigation theme={theme} />
+        </AuthProvider>
       </PaperProvider>
     </SafeAreaProvider>
   );
