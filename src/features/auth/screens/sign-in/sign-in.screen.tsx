@@ -1,7 +1,7 @@
 import {Ionicons} from '@expo/vector-icons';
 import {useFormik} from 'formik';
-import React, {useState} from 'react';
-import {Keyboard, Pressable, StyleSheet, View} from 'react-native';
+import React, {useContext, useEffect, useState} from 'react';
+import {Keyboard, Pressable, StyleSheet, Text, View} from 'react-native';
 import {TextInput} from 'react-native-paper';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Button from '../../../../components/button/button.component';
@@ -15,9 +15,11 @@ import {fontSizes, fonts} from '../../../../constants/fonts';
 import {sizes} from '../../../../constants/sizes';
 import {AuthStackNavigatorProps} from '../../../../navigation/auth/auth.types';
 import * as Yup from 'yup';
+import {AuthContext} from '../../../../contexts/auth.context';
 
 const SignInScreen = ({navigation}: AuthStackNavigatorProps<'SignIn'>) => {
   const [showPassword, setShowPassword] = useState(false);
+  const {login, loading, error, clearError} = useContext(AuthContext);
 
   const formik = useFormik({
     initialValues: {
@@ -32,9 +34,7 @@ const SignInScreen = ({navigation}: AuthStackNavigatorProps<'SignIn'>) => {
         .min(6, 'Password must be at least 6 characters')
         .required('Password is required'),
     }),
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-    },
+    onSubmit: login,
   });
 
   return (
@@ -72,16 +72,13 @@ const SignInScreen = ({navigation}: AuthStackNavigatorProps<'SignIn'>) => {
             onBlur={formik.handleBlur('email')}
             value={formik.values.email}
           />
-
           {formik.touched.email && formik.errors.email && (
             <>
               <Spacer size={sizes.xxs} />
               <Type variant="error">{formik.errors.email}</Type>
             </>
           )}
-
           <Spacer size={sizes.sm} />
-
           <TextInput
             label="Password"
             mode="outlined"
@@ -110,7 +107,6 @@ const SignInScreen = ({navigation}: AuthStackNavigatorProps<'SignIn'>) => {
             onBlur={formik.handleBlur('password')}
             value={formik.values.password}
           />
-
           {formik.touched.password && formik.errors.password && (
             <>
               <Spacer size={sizes.xxs} />
@@ -119,9 +115,10 @@ const SignInScreen = ({navigation}: AuthStackNavigatorProps<'SignIn'>) => {
           )}
 
           <Spacer size={sizes.xs} />
-          {false && (
-            <Type variant="error" textAlign="center">
-              Error
+
+          {error && (
+            <Type variant="error" textAlign="left">
+              {error}
             </Type>
           )}
 
@@ -139,17 +136,16 @@ const SignInScreen = ({navigation}: AuthStackNavigatorProps<'SignIn'>) => {
             color={colors.text.white}
             onPress={formik.handleSubmit}
             disabled={false}
+            loading={loading}
           />
 
           <Spacer size={sizes.md} />
-
           <View style={styles.signup}>
             <Type textAlign="center">Don't have an account?</Type>
             <Pressable onPress={() => navigation.navigate('SignUp')}>
               <Type variant="link"> Signup here</Type>
             </Pressable>
           </View>
-
           <View style={styles.buttonContainer}>
             <View style={styles.orContainer}>
               <View style={styles.orSeparator}></View>

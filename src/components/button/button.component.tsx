@@ -1,7 +1,14 @@
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {
+  ActivityIndicator,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import React from 'react';
 import {fontSizes, fonts} from '../../constants/fonts';
 import {sizes} from '../../constants/sizes';
+import {colors} from '../../constants/colors';
 
 type ButtonProps = {
   title: string;
@@ -11,6 +18,7 @@ type ButtonProps = {
   icon?: React.ReactNode | null;
   onPress: () => void;
   disabled?: boolean;
+  loading?: boolean;
 };
 
 const Button = ({
@@ -21,12 +29,16 @@ const Button = ({
   icon = null,
   onPress,
   disabled = false,
+  loading = false,
 }: ButtonProps) => {
   return (
     <Pressable onPress={() => onPress()} disabled={disabled}>
       <View style={[styles.btn, {borderColor, backgroundColor}]}>
         {icon}
         <Text style={[styles.txt, {color}]}>{title}</Text>
+        {loading && (
+          <ActivityIndicator size={'small'} color={colors.bg.primary} />
+        )}
       </View>
     </Pressable>
   );
